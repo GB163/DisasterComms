@@ -34,8 +34,13 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          # GITHUB_REPOSITORY is set by Actions (e.g. "username/repo-name") so base path is correct
           NODE_ENV: production
+
+      - name: Copy index to 404 for SPA (so refresh on subpaths works)
+        run: cp dist/index.html dist/404.html
+
+      - name: List build output
+        run: ls -la dist && head -30 dist/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
