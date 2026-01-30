@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Guardian SOS | Emergency Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --palette-darkest: #190019;
+            --palette-dark: #2B124C;
+            --palette-mid-dark: #522B5B;
+            --palette-mid: #854F6C;
+            --palette-light: #DFB6B2;
+            --palette-lightest: #FBE4D8;
+        }
+        body {
+            background-color: #190019;
+            color: #FBE4D8;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+            border-radius: 12px;
+            z-index: 1;
+        }
+        .leaflet-tile-pane {
+            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+        }
+        .sos-pulse {
+            animation: pulse-sos 2s infinite;
+        }
+        @keyframes pulse-sos {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(133, 79, 108, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 30px rgba(133, 79, 108, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(133, 79, 108, 0); }
+        }
+        .priority-critical { border-left: 4px solid var(--palette-mid); animation: glow-accent 2s infinite; }
+        .priority-medium { border-left: 4px solid var(--palette-light); }
+        .priority-safe { border-left: 4px solid var(--palette-light); }
+
+        @keyframes glow-accent {
+            0%, 100% { box-shadow: 0 0 5px rgba(133, 79, 108, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(133, 79, 108, 0.5); }
+        }
+        .glass {
+            background: rgba(43, 18, 76, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(223, 182, 178, 0.2);
+        }
+        .view-transition {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .hidden-view {
+            display: none !important;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="antialiased">
+    <div id="root"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

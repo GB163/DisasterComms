@@ -1,0 +1,8 @@
+
+{
+  "name": "Guardian SOS",
+  "description": "High-accuracy live location tracking system for disaster priority scenarios.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
