@@ -5,8 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      // GitHub Pages: base path is repo name (e.g. username.github.io/REPO_NAME/). Local dev uses '/'.
-      base: process.env.GITHUB_REPOSITORY ? `/${process.env.GITHUB_REPOSITORY.split('/')[1]}/` : '/',
+      // GitHub Pages: must match repo name so assets load at gb163.github.io/DisasterComms/
+      base: process.env.NODE_ENV === 'production' ? '/DisasterComms/' : '/',
       server: {
         port: 3000,
         host: '0.0.0.0',
